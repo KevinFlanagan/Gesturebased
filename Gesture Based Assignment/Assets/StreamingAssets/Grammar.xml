@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<grammar xml:lang="en" tag-format="semantics/1.0" version="1.0" 
+ xmlns="http://www.w3.org/2001/06/grammar" root="move">
+
+    <rule id="move">
+        <one-of>
+            <item>
+               <ruleref uri="#forward"/> 
+            </item>
+            <item>
+               <ruleref uri="#backward"/> 
+            </item>
+            <item>
+               <ruleref uri="#left"/> 
+            </item>
+            <item>
+               <ruleref uri="#right"/> 
+            </item>
+        </one-of>
+    </rule>
+
+    <rule id="forward">
+        <tag>out.action = "forward";</tag>
+        <one-of>
+            <item>Forward</item>       
+        </one-of>
+    </rule>
+
+    <rule id="backward">
+    <tag>out.action = "backward";</tag>
+        <one-of>
+            <item>Backward</item>     
+        </one-of>
+    </rule>
+    <rule id="left">
+    <tag>out.action = "left";</tag>
+        <one-of>
+            <item>Left</item>  
+        </one-of>
+    </rule>
+
+     <rule id="right">
+     <tag>out.action = "right";</tag>
+        <one-of>
+            <item>Right</item>
+        </one-of>
+    </rule>
+
+</grammar>
