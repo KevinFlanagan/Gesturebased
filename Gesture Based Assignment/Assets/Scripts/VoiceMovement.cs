@@ -1,17 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Text;  //must have for stringbuilder
+using System.Text;  //must have for StringBuilder
 using System; //must have
 using UnityEngine.Windows.Speech; //must have for grammar recogniser
 using System.Linq; //must have
 using System.IO;
 using UnityEngine.SceneManagement;
 
-public class PhraseController : MonoBehaviour
+public class VoiceMovement : MonoBehaviour
 {
-
-    [SerializeField] private float speed = 5.0f; //cube speed
 
     private GrammarRecognizer gr;
 
@@ -23,7 +21,7 @@ public class PhraseController : MonoBehaviour
         gr = new GrammarRecognizer(Path.Combine(Application.streamingAssetsPath, "Grammar.xml"), ConfidenceLevel.Low);
         gr.OnPhraseRecognized += GR_OnPhraseRecognized;
         gr.Start();
-        Debug.Log("Grammar loaded and recogniser started!");
+        Debug.Log("Loaded grammar and recogniser started!");
 
     }
 
@@ -31,7 +29,7 @@ public class PhraseController : MonoBehaviour
      private void GR_OnPhraseRecognized(PhraseRecognizedEventArgs args)
             {
                 StringBuilder message = new StringBuilder();
-                Debug.Log("Recognised a phrase");
+                Debug.Log("Picked up a phrase");
                 var meanings = args.semanticMeanings;
 
                 foreach(SemanticMeaning meaning in meanings)
@@ -47,14 +45,13 @@ public class PhraseController : MonoBehaviour
 
     void Update()
     {
-        //call upon functions
+        //Call upon the functions
         switch (phrase)
         {
-            //start rule
+            
             case "forward":
                 Forward();
                 break;
-            //exit rule
             case "backward":
                 Backward();
                 break;
@@ -67,7 +64,7 @@ public class PhraseController : MonoBehaviour
 
         }
     }
-
+    // Controls for cube
     private void Forward()
     {
         transform.Translate(1,0,0);
@@ -79,7 +76,7 @@ public class PhraseController : MonoBehaviour
 
     private void Left()
     {
-        transform.Translate(0,1,0);
+        transform.Translate(0,0,0);
     }
 
     private void Right()
